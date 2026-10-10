@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 type Lang = "de" | "en";
 interface ShopState {
@@ -18,6 +18,21 @@ export function ShopProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<string[]>([]);
   const [wishlist, setWish] = useState<string[]>([]);
   const [lang, setLang] = useState<Lang>("de");
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    try {
+      const c = JSON.parse(localStorage.getItem("ml-cart") || "[]");
+      const w = JSON.parse(localStorage.getItem("ml-wish") || "[]");
+      if (Array.isArray(c)) setCart(c);
+      if (Array.isArray(w)) setWish(w);
+    } catch { /* ignore */ }
+    setLoaded(true);
+  }, []);
+  useEffect(() => {
+    if (!loaded) return;
+    localStorage.setItem("ml-cart", JSON.stringify(cart));
+    localStorage.setItem("ml-wish", JSON.stringify(wishlist));
+  }, [cart, wishlist, loaded]);
   return (
     <Ctx.Provider
       value={{
