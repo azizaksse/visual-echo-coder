@@ -15,6 +15,7 @@ export interface Product {
   level: Level;
   category: Category;
   pages: number;
+  time: string;
   materials: string[];
   description: string;
   popularity: number;
