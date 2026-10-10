@@ -12,7 +12,7 @@ export function ProductCard({ p }: { p: Product }) {
     <div className="card-soft card-soft-hover group overflow-hidden">
       <div className="relative">
         <Link to="/produkt/$slug" params={{ slug: p.slug }}>
-          <img src={p.image} alt={x.title} loading="lazy" className="aspect-square w-full object-cover transition duration-700 group-hover:scale-105" />
+          <img src={p.image} alt={x.title} loading="lazy" decoding="async" className="aspect-square w-full object-cover transition duration-700 group-hover:scale-105" />
         </Link>
         <button onClick={() => toggleWish(p.slug)} aria-label="Wishlist" className="absolute right-2 top-2 grid h-10 w-10 place-items-center rounded-full bg-card shadow-md sm:right-3 sm:top-3">
           <Heart className={`h-4 w-4 ${wished ? "fill-primary text-primary" : ""}`} />
