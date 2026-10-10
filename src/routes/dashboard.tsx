@@ -49,8 +49,8 @@ function Dashboard() {
     { icon: Users, l: L("Nouveaux clients", "New customers"), v: "67", d: "+9 %" },
   ];
   return (
-    <main className="mx-auto grid max-w-7xl gap-4 px-3 py-4 sm:gap-6 sm:px-4 sm:py-8 lg:grid-cols-[220px_1fr]">
-      <aside className="card-soft sticky top-2 z-10 h-fit p-2 sm:p-3 lg:top-24">
+    <main className="mx-auto grid max-w-7xl gap-4 px-3 py-4 sm:gap-6 sm:px-4 sm:py-8 grid-cols-[minmax(0,1fr)] lg:grid-cols-[220px_minmax(0,1fr)]">
+      <aside className="card-soft min-w-0 sticky top-2 z-10 h-fit p-2 sm:p-3 lg:top-24">
         <p className="eyebrow hidden px-3 py-2 lg:block">{L("Tableau de bord", "Dashboard")}</p>
         <nav className="-mx-1 flex snap-x gap-1 overflow-x-auto px-1 [scrollbar-width:none] lg:flex-col">
           {nav.map(({ k, icon: I, l }) => (
@@ -85,7 +85,7 @@ function Dashboard() {
             <h2 className="text-xl">{L("Ventes 2026", "Sales 2026")}</h2>
             <div className="mt-4 flex h-40 items-end gap-1 sm:mt-6 sm:h-48 sm:gap-2">
               {sales.map((s, i) => (
-                <div key={i} className="flex flex-1 flex-col items-center gap-1">
+                <div key={i} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
                   <div className="w-full rounded-t-lg bg-primary/80 transition hover:bg-primary" style={{ height: `${(s / max) * 100}%` }} title={formatEUR(s * 8)} />
                   <span className="text-[11px] text-muted-foreground">{months[i]}</span>
                 </div>
