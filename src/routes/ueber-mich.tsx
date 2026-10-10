@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import about from "@/assets/about.jpg";
+import about from "@/assets/about.webp";
 import { useL } from "@/lib/shop";
 
 export const Route = createFileRoute("/ueber-mich")({

@@ -1,8 +1,8 @@
-import bunny from "@/assets/p-bunny.jpg";
-import blanket from "@/assets/p-blanket.jpg";
-import cardigan from "@/assets/p-cardigan.jpg";
-import bag from "@/assets/p-bag.jpg";
-import deco from "@/assets/p-deco.jpg";
+import bunny from "@/assets/p-bunny.webp";
+import blanket from "@/assets/p-blanket.webp";
+import cardigan from "@/assets/p-cardigan.webp";
+import bag from "@/assets/p-bag.webp";
+import deco from "@/assets/p-deco.webp";
 import type { Lang } from "@/lib/shop";
 
 export type Level = "beginner" | "advanced";
