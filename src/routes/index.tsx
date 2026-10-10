@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Download, ListChecks, Sparkles, Star } from "lucide-react";
-import hero from "@/assets/hero.jpg";
+import hero from "@/assets/hero.webp";
 import { products } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import { useT, useL } from "@/lib/shop";
