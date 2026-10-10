@@ -4,37 +4,38 @@ import { Download, ListChecks, Sparkles, Star } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import { products } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
-import { useT } from "@/lib/shop";
+import { useT, useL } from "@/lib/shop";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Maschenliebe – Häkelanleitungen als PDF zum Sofort-Download" },
-      { name: "description", content: "Amigurumi, Decken, Kleidung & Deko: Schritt-für-Schritt Häkelanleitungen als PDF, auch für Anfänger." },
-      { property: "og:title", content: "Maschenliebe – Häkelanleitungen als PDF" },
-      { property: "og:description", content: "Schritt-für-Schritt Häkel-E-Books zum Sofort-Download." },
+      { title: "Maschenliebe – Patrons de crochet PDF à télécharger" },
+      { name: "description", content: "Amigurumi, couvertures, vêtements et déco : patrons de crochet pas à pas en PDF, même pour débutants." },
+      { property: "og:title", content: "Maschenliebe – Patrons de crochet en PDF" }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:description", content: "E-books de crochet pas à pas, téléchargement immédiat." },
     ],
   }),
   component: Index,
 });
 
 const reviews = [
-  { name: "Lena, Hamburg", text: "Super verständlich erklärt – mein erstes Amigurumi ist perfekt geworden!" },
-  { name: "Sophie, Wien", text: "Die Fotos zu jedem Schritt sind Gold wert. Schon die dritte Anleitung gekauft." },
-  { name: "Marie, Köln", text: "Download kam sofort, die Decke ist ein Traum. Danke!" },
+  { name: "Léa, Lyon", fr: "Super bien expliqué – mon premier amigurumi est parfait !", en: "So clearly explained – my first amigurumi turned out perfect!" },
+  { name: "Sophie, Bruxelles", fr: "Les photos à chaque étape valent de l'or. Déjà mon troisième patron.", en: "The photos for every step are gold. Already my third pattern." },
+  { name: "Marie, Paris", fr: "Téléchargement immédiat, la couverture est un rêve. Merci !", en: "Instant download, the blanket is a dream. Thank you!" },
 ];
 
 function Index() {
   const t = useT();
+  const L = useL();
   const [sent, setSent] = useState(false);
   const bestsellers = [...products].sort((a, b) => b.popularity - a.popularity).slice(0, 4);
   return (
     <main>
       <section className="relative">
-        <img src={hero} alt="Pastellfarbene Wollknäuel und gehäkeltes Häschen" className="h-[85vh] min-h-[520px] w-full object-cover" />
+        <img src={hero} alt={L("Pelotes pastel et lapin au crochet", "Pastel yarn balls and crocheted bunny")} className="h-[85vh] min-h-[520px] w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         <div className="absolute inset-0 mx-auto flex max-w-6xl flex-col justify-center px-4">
-          <p className="eyebrow">Handgemacht · Sofort-Download</p>
+          <p className="eyebrow">{L("Fait main · Téléchargement immédiat", "Handmade · Instant download")}</p>
           <h1 className="mt-5 max-w-xl text-5xl md:text-7xl">{t.heroTitle}</h1>
           <p className="mt-4 max-w-md text-lg text-muted-foreground">{t.heroSub}</p>
           <Link to="/shop" className="btn btn-primary mt-8 w-fit">{t.discover}</Link>
@@ -43,9 +44,9 @@ function Index() {
 
       <section className="mx-auto grid max-w-6xl gap-4 px-4 py-24 sm:grid-cols-3">
         {[
-          { i: Download, t: "Sofortiger Download", d: "PDF direkt nach dem Kauf" },
-          { i: ListChecks, t: "Schritt-für-Schritt Anleitungen", d: "Mit Fotos zu jeder Runde" },
-          { i: Sparkles, t: "Für Anfänger geeignet", d: "Klar erklärt, ohne Stress" },
+          { i: Download, t: L("Téléchargement immédiat", "Instant download"), d: L("PDF juste après l'achat", "PDF right after purchase") },
+          { i: ListChecks, t: L("Patrons pas à pas", "Step-by-step patterns"), d: L("Avec photos à chaque rang", "With photos for every round") },
+          { i: Sparkles, t: L("Pour débutants", "Beginner friendly"), d: L("Clair et sans stress", "Clear and stress-free") },
         ].map(({ i: I, t: title, d }) => (
           <div key={title} className="card-soft flex items-center gap-4 p-5">
             <span className="rounded-full bg-accent p-3 text-accent-foreground"><I className="h-5 w-5" /></span>
@@ -55,7 +56,7 @@ function Index() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4">
-        <div className="mb-6 flex items-end justify-between"><h2 className="text-4xl md:text-5xl">Neu & ausgewählt</h2><Link to="/shop" className="text-sm font-bold text-primary">Alle ansehen →</Link></div>
+        <div className="mb-6 flex items-end justify-between"><h2 className="text-4xl md:text-5xl">{L("Nouveautés", "New & featured")}</h2><Link to="/shop" className="text-sm font-bold text-primary">{L("Tout voir →", "View all →")}</Link></div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3">{products.slice(0, 3).map((p) => <ProductCard key={p.slug} p={p} />)}</div>
       </section>
 
@@ -65,12 +66,12 @@ function Index() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 pt-28">
-        <h2 className="mb-6 text-center text-4xl md:text-5xl">Das sagen meine Kundinnen</h2>
+        <h2 className="mb-6 text-center text-4xl md:text-5xl">{L("Ce que disent mes clientes", "What my customers say")}</h2>
         <div className="grid gap-4 md:grid-cols-3">
           {reviews.map((r) => (
             <figure key={r.name} className="card-soft p-6">
               <div className="flex gap-0.5">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-primary text-primary" />)}</div>
-              <blockquote className="mt-3">„{r.text}“</blockquote>
+              <blockquote className="mt-3">“{L(r.fr, r.en)}”</blockquote>
               <figcaption className="mt-3 text-sm text-muted-foreground">– {r.name}</figcaption>
             </figure>
           ))}
@@ -78,12 +79,12 @@ function Index() {
       </section>
 
       <section className="mx-auto mt-20 max-w-4xl rounded-3xl bg-sage px-6 py-12 text-center text-sage-foreground shadow-[0_2px_4px_oklch(0.3_0.03_40/0.06),0_20px_48px_-20px_oklch(0.3_0.05_30/0.3)]">
-        <h2 className="text-3xl">Gratis-Anleitung für dich 🧶</h2>
-        <p className="mt-2">Melde dich zum Newsletter an und erhalte das Muster „Mini-Herz“ geschenkt.</p>
-        {sent ? <p className="mt-6 font-bold">Danke! Bitte bestätige deine Anmeldung per E-Mail.</p> : (
+        <h2 className="text-3xl">{L("Un patron offert pour toi 🧶", "A free pattern for you 🧶")}</h2>
+        <p className="mt-2">{L("Inscris-toi à la newsletter et reçois le patron « Mini-cœur » en cadeau.", "Sign up for the newsletter and get the “Mini Heart” pattern as a gift.")}</p>
+        {sent ? <p className="mt-6 font-bold">{L("Merci ! Confirme ton inscription par e-mail.", "Thank you! Please confirm your sign-up by email.")}</p> : (
           <form className="mx-auto mt-6 flex max-w-md gap-2" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
-            <input required type="email" placeholder="Deine E-Mail" className="field" aria-label="E-Mail" />
-            <button className="btn btn-primary shrink-0">Anmelden</button>
+            <input required type="email" placeholder={L("Ton e-mail", "Your email")} className="field" aria-label="Email" />
+            <button className="btn btn-primary shrink-0">{L("S'inscrire", "Sign up")}</button>
           </form>
         )}
       </section>
