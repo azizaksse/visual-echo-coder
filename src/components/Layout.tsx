@@ -13,7 +13,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-        <Link to="/" className="font-display text-2xl italic tracking-tight">{SHOP_NAME}</Link>
+        <Link to="/" className="font-display text-2xl font-bold tracking-tight">{SHOP_NAME}</Link>
         <nav className="hidden gap-5 text-sm font-semibold md:flex">
           <Link to="/shop" activeProps={{ className: "text-primary" }}>{t.shop}</Link>
           <Link to="/ueber-mich" activeProps={{ className: "text-primary" }}>{t.about}</Link>
@@ -64,7 +64,7 @@ export function Footer() {
     <footer className="mt-24 border-t bg-secondary">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3">
         <div>
-          <p className="font-display text-2xl italic">{SHOP_NAME}</p>
+          <p className="font-display text-2xl font-bold">{SHOP_NAME}</p>
           <p className="mt-2 text-sm text-muted-foreground">{L("Patrons de crochet en PDF – faits avec amour en Europe.", "Crochet patterns as PDF – made with love in Europe.")}</p>
         </div>
         <div className="grid grid-cols-2 gap-2 text-sm">
