@@ -116,14 +116,20 @@ export function Footer() {
 export function CookieBanner() {
   const L = useL();
   const [show, setShow] = useState(false);
-  useEffect(() => setShow(true), []);
+  useEffect(() => {
+    setShow(localStorage.getItem("ml-consent") === null);
+  }, []);
+  const choose = (value: string) => {
+    localStorage.setItem("ml-consent", value);
+    setShow(false);
+  };
   if (!show) return null;
   return (
     <div className="card-soft fixed inset-x-3 bottom-3 z-50 mx-auto max-w-2xl p-5 md:flex md:items-center md:gap-4">
       <p className="text-sm">{L("Nous utilisons uniquement des cookies nécessaires. Avec ton accord, nous utilisons aussi des cookies statistiques.", "We only use necessary cookies. With your consent we also use statistics cookies.")} <Link to="/datenschutz" className="underline">{L("En savoir plus", "Learn more")}</Link></p>
       <div className="mt-3 flex shrink-0 gap-2 md:mt-0">
-        <button className="btn btn-outline px-4 py-2 text-sm" onClick={() => setShow(false)}>{L("Nécessaires uniquement", "Necessary only")}</button>
-        <button className="btn btn-primary px-4 py-2 text-sm" onClick={() => setShow(false)}>{L("Tout accepter", "Accept all")}</button>
+        <button className="btn btn-outline px-4 py-2 text-sm" onClick={() => choose("necessary")}>{L("Nécessaires uniquement", "Necessary only")}</button>
+        <button className="btn btn-primary px-4 py-2 text-sm" onClick={() => choose("all")}>{L("Tout accepter", "Accept all")}</button>
       </div>
     </div>
   );
