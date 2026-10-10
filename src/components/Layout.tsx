@@ -15,7 +15,7 @@ export function Header() {
     <header className="sticky top-0 z-40 px-3 pt-3 sm:px-4">
       <div className="glass-bar mx-auto flex max-w-6xl items-center gap-4 rounded-full px-4 py-2 sm:px-5">
         <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label={SHOP_NAME}>
-          <img src={logoMark} alt="" className="h-9 w-9" />
+          <img src={logoMark} alt="" className="h-10 w-10 rounded-full shadow-[var(--shadow-soft)]" />
           <span className="font-display text-xl font-bold tracking-tight">{SHOP_NAME}</span>
         </Link>
         <nav className="hidden gap-1 text-sm font-medium md:flex [&>a]:rounded-full [&>a]:px-3.5 [&>a]:py-2 [&>a:hover]:bg-secondary">
@@ -25,13 +25,13 @@ export function Header() {
           <Link to="/kontakt" activeProps={{ className: "bg-foreground text-background" }}>{t.contact}</Link>
         </nav>
         <form
-          className="ml-auto hidden items-center gap-2 rounded-full border bg-card px-3 py-1.5 sm:flex"
+          className="pill-soft ml-auto hidden items-center gap-2 px-4 py-2 sm:flex"
           onSubmit={(e) => { e.preventDefault(); nav({ to: "/shop", search: { q } }); }}
         >
           <Search className="h-4 w-4 text-muted-foreground" />
           <input aria-label={t.search} value={q} onChange={(e) => setQ(e.target.value)} placeholder={t.search} className="w-40 bg-transparent text-sm outline-none" />
         </form>
-        <button onClick={() => setLang(lang === "fr" ? "en" : "fr")} className="ml-auto rounded-full border px-2.5 py-1 text-xs font-bold sm:ml-0" aria-label="Langue / Language">
+        <button onClick={() => setLang(lang === "fr" ? "en" : "fr")} className="pill-soft ml-auto px-3 py-1.5 text-xs font-bold sm:ml-0" aria-label="Langue / Language">
           {lang === "fr" ? "FR | en" : "fr | EN"}
         </button>
         <Link to="/shop" search={{ wish: true }} className="relative" aria-label="Wishlist">
@@ -86,7 +86,7 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-x-6 gap-y-6 border-b pb-6 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div className="col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2" aria-label={SHOP_NAME}>
-              <img src={logoMark} alt="" className="h-8 w-8" />
+              <img src={logoMark} alt="" className="h-9 w-9 rounded-full shadow-[var(--shadow-soft)]" />
               <span className="font-display text-lg font-bold tracking-tight">{SHOP_NAME}</span>
             </Link>
             <p className="mt-1.5 max-w-[26ch] text-xs leading-relaxed text-muted-foreground">
