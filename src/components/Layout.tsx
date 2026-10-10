@@ -2,6 +2,8 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { Heart, Search, ShoppingBag } from "lucide-react";
 import { useShop, useT, useL } from "@/lib/shop";
+import logoMark from "@/assets/logo-mark.png";
+import logo from "@/assets/logo.png";
 
 export const SHOP_NAME = "Maschenliebe";
 
@@ -13,7 +15,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-        <Link to="/" className="font-display text-2xl font-bold tracking-tight">{SHOP_NAME}</Link>
+        <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label={SHOP_NAME}>
+          <img src={logoMark} alt="" className="h-10 w-10 md:h-11 md:w-11" />
+          <span className="font-display text-2xl font-bold tracking-tight">{SHOP_NAME}</span>
+        </Link>
         <nav className="hidden gap-5 text-sm font-semibold md:flex">
           <Link to="/shop" activeProps={{ className: "text-primary" }}>{t.shop}</Link>
           <Link to="/ueber-mich" activeProps={{ className: "text-primary" }}>{t.about}</Link>
@@ -77,7 +82,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 pb-6 pt-14">
         <div className="grid gap-10 border-b pb-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
-            <p className="font-display text-2xl font-bold tracking-tight">{SHOP_NAME}</p>
+            <img src={logo} alt={SHOP_NAME} className="h-20 w-20" />
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
               {L("Patrons de crochet en PDF – faits avec amour en Europe.", "Crochet patterns as PDF – made with love in Europe.")}
             </p>
