@@ -12,7 +12,7 @@ describe("translation dictionary", () => {
   const src = read("lib/shop.tsx");
   const block = (lang: string) => {
     const m = src.match(new RegExp(`\\n\\s*${lang}: \\{([^\\n]*)\\}`));
-    return Object.fromEntries([...(m?.[1] ?? "").matchAll(/(\w+): "([^"]*)"/g)].map((x) => [x[1], x[2]]));
+    return Object.fromEntries([...(m?.[1] ?? "").matchAll(/(\w+): "([^"]*)"/g)].map((x) => [x[1], x[2] ?? ""] as [string, string]));
   };
   const fr = block("fr"), en = block("en");
   it("has the same keys in FR and EN", () => {
@@ -27,7 +27,7 @@ describe("product translations", () => {
   for (const p of products) {
     it(`${p.slug} is complete in FR and EN`, () => {
       for (const l of ["fr", "en"] as const) {
-        const t = p[l] as Record<string, unknown>;
+        const t = p[l] as unknown as Record<string, unknown>;
         for (const [k, v] of Object.entries(t)) {
           if (Array.isArray(v)) v.forEach((s) => expect(String(s).trim(), `${l}.${k}`).not.toBe(""));
           else expect(String(v ?? "").trim(), `${l}.${k}`).not.toBe("");
@@ -48,7 +48,7 @@ describe("page strings", () => {
     it(`${file}: every L("fr", "en") pair is filled and translated`, () => {
       const problems: string[] = [];
       for (const m of src.matchAll(/\bL\(\s*(["'`])((?:\\.|(?!\1).)*)\1\s*,\s*(["'`])((?:\\.|(?!\3).)*)\3\s*\)/g)) {
-        const [fr, en] = [m[2].trim(), m[4].trim()];
+        const [fr, en] = [(m[2] ?? "").trim(), (m[4] ?? "").trim()];
         if (!fr || !en) problems.push(`empty: ${m[0]}`);
         else if (fr === en && !SAME_OK.has(fr)) problems.push(`identical: ${m[0]}`);
       }
@@ -59,7 +59,7 @@ describe("page strings", () => {
     it(`${file}: no hard-coded visible text outside L()`, () => {
       const body = src.replace(/head:\s*\(\)\s*=>\s*\(\{[\s\S]*?\n\s*\}\),/m, "");
       const hits = [...body.matchAll(/>\s*([A-Za-zÀ-ÿ][^<>{}]*?[A-Za-zÀ-ÿ.!?])\s*</g)]
-        .map((m) => m[1].trim())
+        .map((m) => (m[1] ?? "").trim())
         .filter((s) => !/[;=()&|]/.test(s) && !SAME_OK.has(s));
       expect(hits, "wrap these in L(fr, en)").toEqual([]);
     });
