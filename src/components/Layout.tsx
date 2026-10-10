@@ -52,13 +52,11 @@ export function Header() {
 
 export const PAYMENTS = ["Visa", "Mastercard", "PayPal", "Apple Pay", "Google Pay", "SEPA", "Klarna", "iDEAL"];
 
-export function PaymentIcons({ compact = false }: { compact?: boolean }) {
+export function PaymentIcons() {
   return (
     <div className="flex flex-wrap gap-1.5">
       {PAYMENTS.map((p) => (
-        <span key={p} className={compact
-          ? "pill-soft px-2 py-0.5 text-[10px] font-semibold text-muted-foreground"
-          : "pill-soft px-3 py-1.5 text-[11px] font-semibold text-muted-foreground"}>{p}</span>
+        <span key={p} className="pill-soft px-3 py-1.5 text-[11px] font-semibold text-muted-foreground">{p}</span>
       ))}
     </div>
   );
@@ -109,10 +107,7 @@ export function Footer() {
             { to: "/widerruf", label: L("Droit de rétractation", "Right of withdrawal") },
           ]} />
         </div>
-        <div className="flex flex-col gap-2.5 pt-3.5 text-[11px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {SHOP_NAME} · {L("Tous les prix TVA incluse", "All prices incl. VAT")}</p>
-          <PaymentIcons compact />
-        </div>
+        <p className="pt-3.5 text-center text-[11px] text-muted-foreground">© {year} {SHOP_NAME} · {L("Tous les prix TVA incluse", "All prices incl. VAT")}</p>
       </div>
     </footer>
   );
