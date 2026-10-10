@@ -35,7 +35,7 @@ function ProductPage() {
         <div>
           <img src={gallery[img]} alt={x.title} className="card-soft aspect-square w-full object-cover" />
           <div className="mt-3 flex gap-3">
-            {gallery.map((g, i) => <button key={i} onClick={() => setImg(i)} className={`grid h-20 w-20 place-items-center overflow-hidden rounded-full shadow-[var(--shadow-soft)] ring-2 transition ${i === img ? "ring-foreground" : "ring-transparent opacity-70 hover:opacity-100"}`}><img src={g} alt="" loading="lazy" className="h-20 w-20 rounded-full object-cover" /></button>)}
+            {gallery.map((g, i) => <button key={i} onClick={() => setImg(i)} className={`h-20 w-20 overflow-hidden rounded-full transition ${i === img ? "shadow-[0_10px_24px_-8px_oklch(0.3_0.05_30/0.5)] scale-105" : "opacity-60 shadow-[var(--shadow-soft)] hover:opacity-100"}`}><img src={g} alt="" loading="lazy" className="h-20 w-20 rounded-full object-cover" /></button>)}
           </div>
         </div>
         <div>

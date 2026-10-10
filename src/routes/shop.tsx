@@ -48,7 +48,7 @@ function Shop() {
       </select>
       <div className="-mx-4 mt-4 flex items-center gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:mt-6 sm:flex-wrap sm:overflow-visible sm:px-0 [&>button]:shrink-0">
         {levels.map((l) => <Chip key={l} on={level === l} onClick={() => setLevel(level === l ? null : l)}>{levelLabel[l][lang]}</Chip>)}
-        <span className="mx-1 h-6 w-px shrink-0 bg-border" />
+        <span className="mx-1 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground/15" />
         {cats.map((c) => <Chip key={c} on={cat === c} onClick={() => setCat(cat === c ? null : c)}>{categoryLabel[c][lang]}</Chip>)}
         <select value={sort} onChange={(e) => setSort(e.target.value)} className="field ml-auto hidden w-auto sm:block" aria-label={L("Trier", "Sort")}>
           <option value="neu">{L("Nouveautés", "Newest")}</option><option value="beliebt">{L("Populaires", "Popular")}</option>
