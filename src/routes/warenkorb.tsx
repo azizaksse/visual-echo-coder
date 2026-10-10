@@ -54,7 +54,7 @@ function Cart() {
         <h2 className="text-lg">{L("Récapitulatif", "Order summary")}</h2>
         {items.map((p) => (
           <div key={p.slug} className="flex items-center gap-3">
-            <img src={p.image} alt="" className="h-14 w-14 rounded-lg object-cover" />
+            <img src={p.image} alt="" className="h-14 w-14 rounded-full object-cover shadow-[var(--shadow-soft)]" />
             <span className="flex-1 text-sm font-semibold">{p[lang].title}</span>
             <span className="text-sm">{formatEUR(p.price)}</span>
             <button onClick={() => removeFromCart(p.slug)} aria-label={L("Retirer", "Remove")}><X className="h-4 w-4" /></button>

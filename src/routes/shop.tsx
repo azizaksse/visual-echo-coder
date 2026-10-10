@@ -24,7 +24,7 @@ const cats: Category[] = ["amigurumi", "blankets", "clothing", "accessories", "d
 const levels: Level[] = ["beginner", "advanced"];
 
 function Chip({ on, children, onClick }: { on: boolean; children: string; onClick: () => void }) {
-  return <button onClick={onClick} className={`min-h-10 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium shadow-sm transition sm:min-h-0 sm:px-3 sm:py-1.5 ${on ? "bg-foreground text-background" : "bg-card hover:bg-secondary"}`}>{children}</button>;
+  return <button onClick={onClick} className={`min-h-10 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium shadow-[var(--shadow-soft)] transition sm:min-h-0 sm:px-3.5 sm:py-1.5 ${on ? "bg-foreground text-background" : "bg-card hover:bg-secondary"}`}>{children}</button>;
 }
 
 function Shop() {

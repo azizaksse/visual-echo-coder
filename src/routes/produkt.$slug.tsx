@@ -35,7 +35,7 @@ function ProductPage() {
         <div>
           <img src={gallery[img]} alt={x.title} className="card-soft aspect-square w-full object-cover" />
           <div className="mt-3 flex gap-3">
-            {gallery.map((g, i) => <button key={i} onClick={() => setImg(i)} className={`overflow-hidden rounded-xl border-2 ${i === img ? "border-primary" : "border-transparent"}`}><img src={g} alt="" loading="lazy" className="h-20 w-20 object-cover" /></button>)}
+            {gallery.map((g, i) => <button key={i} onClick={() => setImg(i)} className={`grid h-20 w-20 place-items-center overflow-hidden rounded-full shadow-[var(--shadow-soft)] ring-2 transition ${i === img ? "ring-foreground" : "ring-transparent opacity-70 hover:opacity-100"}`}><img src={g} alt="" loading="lazy" className="h-20 w-20 rounded-full object-cover" /></button>)}
           </div>
         </div>
         <div>
@@ -45,12 +45,12 @@ function ProductPage() {
           <p className="mt-4 text-3xl font-bold">{formatEUR(p.price)} <span className="text-sm font-normal text-muted-foreground">{t.vat}</span></p>
           <p className="mt-4 text-muted-foreground">{x.description}</p>
           <dl className="mt-6 grid grid-cols-3 gap-3 text-sm">
-            <div className="rounded-xl bg-muted p-3"><dt className="flex items-center gap-1.5 text-muted-foreground"><Gauge className="h-4 w-4" />{L("Niveau", "Difficulty")}</dt><dd className="mt-1 font-bold">{levelLabel[p.level][lang]}</dd></div>
-            <div className="rounded-xl bg-muted p-3"><dt className="flex items-center gap-1.5 text-muted-foreground"><Clock className="h-4 w-4" />{L("Durée", "Time")}</dt><dd className="mt-1 font-bold">{x.time}</dd></div>
-            <div className="rounded-xl bg-muted p-3"><dt className="flex items-center gap-1.5 text-muted-foreground"><FileText className="h-4 w-4" />{L("Patron", "Pattern")}</dt><dd className="mt-1 font-bold">{p.pages} {L("pages PDF", "PDF pages")}</dd></div>
+            <div className="rounded-3xl bg-card p-4 shadow-[var(--shadow-soft)]"><dt className="flex items-center gap-1.5 text-muted-foreground"><Gauge className="h-4 w-4" />{L("Niveau", "Difficulty")}</dt><dd className="mt-1 font-bold">{levelLabel[p.level][lang]}</dd></div>
+            <div className="rounded-3xl bg-card p-4 shadow-[var(--shadow-soft)]"><dt className="flex items-center gap-1.5 text-muted-foreground"><Clock className="h-4 w-4" />{L("Durée", "Time")}</dt><dd className="mt-1 font-bold">{x.time}</dd></div>
+            <div className="rounded-3xl bg-card p-4 shadow-[var(--shadow-soft)]"><dt className="flex items-center gap-1.5 text-muted-foreground"><FileText className="h-4 w-4" />{L("Patron", "Pattern")}</dt><dd className="mt-1 font-bold">{p.pages} {L("pages PDF", "PDF pages")}</dd></div>
           </dl>
           <h2 className="mt-6 flex items-center gap-2 text-lg"><Package className="h-5 w-5 text-primary" />{L("Matériel nécessaire", "Materials you need")}</h2>
-          <ul className="mt-2 grid gap-1.5 text-sm text-muted-foreground sm:grid-cols-2">{x.materials.map((m) => <li key={m} className="rounded-lg bg-muted/60 px-3 py-1.5">{m}</li>)}</ul>
+          <ul className="mt-2 grid gap-1.5 text-sm text-muted-foreground sm:grid-cols-2">{x.materials.map((m) => <li key={m} className="pill-soft px-4 py-1.5">{m}</li>)}</ul>
           <div className="mt-8 flex gap-3">
             <button onClick={() => addToCart(p.slug)} className="btn btn-primary flex-1">{cart.includes(p.slug) ? t.added : t.add}</button>
             <button onClick={() => toggleWish(p.slug)} className="btn btn-outline px-4" aria-label="Wishlist"><Heart className={`h-5 w-5 ${wishlist.includes(p.slug) ? "fill-primary text-primary" : ""}`} /></button>

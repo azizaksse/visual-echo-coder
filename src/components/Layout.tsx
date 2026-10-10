@@ -57,8 +57,8 @@ export function PaymentIcons({ compact = false }: { compact?: boolean }) {
     <div className="flex flex-wrap gap-1.5">
       {PAYMENTS.map((p) => (
         <span key={p} className={compact
-          ? "rounded border border-border/60 bg-card/70 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground"
-          : "rounded-md border border-border/60 bg-card/70 px-2.5 py-1.5 text-[11px] font-semibold text-muted-foreground"}>{p}</span>
+          ? "pill-soft px-2 py-0.5 text-[10px] font-semibold text-muted-foreground"
+          : "pill-soft px-3 py-1.5 text-[11px] font-semibold text-muted-foreground"}>{p}</span>
       ))}
     </div>
   );
