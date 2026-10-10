@@ -31,16 +31,17 @@ function Index() {
   return (
     <main>
       <section className="relative">
-        <img src={hero} alt="Pastellfarbene Wollknäuel und gehäkeltes Häschen" className="h-[70vh] min-h-[460px] w-full object-cover" />
+        <img src={hero} alt="Pastellfarbene Wollknäuel und gehäkeltes Häschen" className="h-[85vh] min-h-[520px] w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         <div className="absolute inset-0 mx-auto flex max-w-6xl flex-col justify-center px-4">
-          <h1 className="max-w-lg text-4xl leading-tight md:text-6xl">{t.heroTitle}</h1>
+          <p className="eyebrow">Handgemacht · Sofort-Download</p>
+          <h1 className="mt-5 max-w-xl text-5xl md:text-7xl">{t.heroTitle}</h1>
           <p className="mt-4 max-w-md text-lg text-muted-foreground">{t.heroSub}</p>
           <Link to="/shop" className="btn btn-primary mt-8 w-fit">{t.discover}</Link>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-4 px-4 py-16 sm:grid-cols-3">
+      <section className="mx-auto grid max-w-6xl gap-4 px-4 py-24 sm:grid-cols-3">
         {[
           { i: Download, t: "Sofortiger Download", d: "PDF direkt nach dem Kauf" },
           { i: ListChecks, t: "Schritt-für-Schritt Anleitungen", d: "Mit Fotos zu jeder Runde" },
@@ -54,17 +55,17 @@ function Index() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4">
-        <div className="mb-6 flex items-end justify-between"><h2 className="text-3xl">Neu & ausgewählt</h2><Link to="/shop" className="text-sm font-bold text-primary">Alle ansehen →</Link></div>
+        <div className="mb-6 flex items-end justify-between"><h2 className="text-4xl md:text-5xl">Neu & ausgewählt</h2><Link to="/shop" className="text-sm font-bold text-primary">Alle ansehen →</Link></div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3">{products.slice(0, 3).map((p) => <ProductCard key={p.slug} p={p} />)}</div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pt-16">
-        <h2 className="mb-6 text-3xl">Bestseller</h2>
+      <section className="mx-auto max-w-6xl px-4 pt-28">
+        <h2 className="mb-6 text-4xl md:text-5xl">Bestseller</h2>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">{bestsellers.map((p) => <ProductCard key={p.slug} p={p} />)}</div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pt-20">
-        <h2 className="mb-6 text-center text-3xl">Das sagen meine Kundinnen</h2>
+      <section className="mx-auto max-w-6xl px-4 pt-28">
+        <h2 className="mb-6 text-center text-4xl md:text-5xl">Das sagen meine Kundinnen</h2>
         <div className="grid gap-4 md:grid-cols-3">
           {reviews.map((r) => (
             <figure key={r.name} className="card-soft p-6">
