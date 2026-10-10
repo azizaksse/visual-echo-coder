@@ -46,6 +46,8 @@ export function Header() {
   );
 }
 
+export const PAYMENTS = ["Visa", "Mastercard", "PayPal", "Apple Pay", "Google Pay", "SEPA", "Klarna", "iDEAL"];
+
 export function PaymentIcons() {
   return (
     <div className="flex flex-wrap gap-1.5">
