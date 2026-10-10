@@ -46,35 +46,67 @@ export function Header() {
   );
 }
 
-export const PAYMENTS = ["Visa", "Mastercard", "PayPal", "Apple Pay", "Google Pay", "SEPA", "Klarna", "iDEAL"];
-
 export function PaymentIcons() {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-1.5">
       {PAYMENTS.map((p) => (
-        <span key={p} className="rounded-md border bg-card px-2 py-1 text-xs font-semibold text-muted-foreground">{p}</span>
+        <span key={p} className="rounded-md border border-border/60 bg-card/70 px-2.5 py-1.5 text-[11px] font-semibold text-muted-foreground">{p}</span>
       ))}
     </div>
   );
 }
 
+function FooterCol({ title, links }: { title: string; links: { to: string; label: string }[] }) {
+  return (
+    <nav className="grid gap-2.5">
+      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{title}</p>
+      {links.map((l) => (
+        <Link key={l.to} to={l.to} className="w-fit text-sm text-foreground/80 transition-colors hover:text-primary">{l.label}</Link>
+      ))}
+    </nav>
+  );
+}
+
 export function Footer() {
   const L = useL();
+  const year = new Date().getFullYear();
   return (
-    <footer className="mt-24 border-t bg-secondary">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3">
-        <div>
-          <p className="font-display text-2xl font-bold">{SHOP_NAME}</p>
-          <p className="mt-2 text-sm text-muted-foreground">{L("Patrons de crochet en PDF – faits avec amour en Europe.", "Crochet patterns as PDF – made with love in Europe.")}</p>
+    <footer className="mt-24 bg-secondary/50">
+      <div className="mx-auto max-w-6xl px-4 pb-6 pt-14">
+        <div className="grid gap-10 border-b pb-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+          <div>
+            <p className="font-display text-2xl font-bold tracking-tight">{SHOP_NAME}</p>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
+              {L("Patrons de crochet en PDF – faits avec amour en Europe.", "Crochet patterns as PDF – made with love in Europe.")}
+            </p>
+            <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+              {L("Paiement sécurisé", "Secure payment")}
+            </p>
+            <div className="mt-3"><PaymentIcons /></div>
+          </div>
+          <FooterCol title={L("Boutique", "Shop")} links={[
+            { to: "/shop", label: L("Tous les modèles", "All patterns") },
+            { to: "/ueber-mich", label: L("À propos", "About") },
+            { to: "/dashboard", label: "Dashboard" },
+          ]} />
+          <FooterCol title={L("Aide", "Help")} links={[
+            { to: "/faq", label: "FAQ" },
+            { to: "/kontakt", label: L("Contact", "Contact") },
+          ]} />
+          <FooterCol title={L("Légal", "Legal")} links={[
+            { to: "/impressum", label: L("Mentions légales", "Legal notice") },
+            { to: "/datenschutz", label: L("Confidentialité", "Privacy") },
+            { to: "/agb", label: L("CGV", "Terms") },
+            { to: "/widerruf", label: L("Droit de rétractation", "Right of withdrawal") },
+          ]} />
         </div>
-        <div className="grid grid-cols-2 gap-2 text-sm">
-          <Link to="/impressum">{L("Mentions légales", "Legal notice")}</Link><Link to="/datenschutz">{L("Confidentialité", "Privacy")}</Link>
-          <Link to="/agb">{L("CGV", "Terms")}</Link><Link to="/widerruf">{L("Droit de rétractation", "Right of withdrawal")}</Link>
-          <Link to="/faq">FAQ</Link><Link to="/kontakt">Contact</Link><Link to="/dashboard">Dashboard</Link>
+        <div className="flex flex-col gap-2 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <p>© {year} {SHOP_NAME} · {L("Tous les prix TVA incluse", "All prices incl. VAT")}</p>
+          <p className="sm:text-right">
+            {L("Conçu et tricoté avec ❤", "Designed and knitted with ❤")}
+          </p>
         </div>
-        <div><p className="mb-3 text-sm font-bold">{L("Paiement sécurisé", "Secure payment")}</p><PaymentIcons /></div>
       </div>
-      <p className="pb-6 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} {SHOP_NAME} · {L("Tous les prix TVA incluse", "All prices incl. VAT")}</p>
     </footer>
   );
 }
