@@ -5,9 +5,9 @@ import { ProductCard } from "@/components/ProductCard";
 import { useShop } from "@/lib/shop";
 
 export const Route = createFileRoute("/shop")({
-  validateSearch: (s: Record<string, unknown>): { q?: string; wish?: boolean } => ({
-    q: typeof s.q === "string" ? s.q : undefined,
-    wish: s.wish === true || s.wish === "true" ? true : undefined,
+  validateSearch: (s: Record<string, unknown>): { q?: string | undefined; wish?: boolean | undefined } => ({
+    q: typeof s["q"] === "string" ? s["q"] : undefined,
+    wish: s["wish"] === true || s["wish"] === "true" ? true : undefined,
   }),
   head: () => ({
     meta: [
