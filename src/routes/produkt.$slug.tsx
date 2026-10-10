@@ -17,7 +17,7 @@ export const Route = createFileRoute("/produkt/$slug")({
     const title = `${p.fr.title} – Patron crochet PDF | Maschenliebe`;
     return { meta: [{ title }, { name: "description", content: p.fr.description }, { property: "og:title", content: title }, { property: "og:description", content: p.fr.description }, { property: "og:type", content: "product" }, { name: "twitter:card", content: "summary_large_image" }] };
   },
-  notFoundComponent: () => <main className="p-16 text-center">Patron introuvable / Pattern not found. <Link to="/shop" className="text-primary underline">Boutique / Shop</Link></main>,
+  notFoundComponent: NotFound,
   component: ProductPage,
 });
 
@@ -47,7 +47,7 @@ function ProductPage() {
           <dl className="mt-6 grid grid-cols-3 gap-3 text-sm">
             <div className="rounded-xl bg-muted p-3"><dt className="flex items-center gap-1.5 text-muted-foreground"><Gauge className="h-4 w-4" />{L("Niveau", "Difficulty")}</dt><dd className="mt-1 font-bold">{levelLabel[p.level][lang]}</dd></div>
             <div className="rounded-xl bg-muted p-3"><dt className="flex items-center gap-1.5 text-muted-foreground"><Clock className="h-4 w-4" />{L("Durée", "Time")}</dt><dd className="mt-1 font-bold">{x.time}</dd></div>
-            <div className="rounded-xl bg-muted p-3"><dt className="flex items-center gap-1.5 text-muted-foreground"><FileText className="h-4 w-4" />{L("Patron", "Pattern")}</dt><dd className="mt-1 font-bold">{p.pages} {L("pages PDF", "pages PDF")}</dd></div>
+            <div className="rounded-xl bg-muted p-3"><dt className="flex items-center gap-1.5 text-muted-foreground"><FileText className="h-4 w-4" />{L("Patron", "Pattern")}</dt><dd className="mt-1 font-bold">{p.pages} {L("pages PDF", "PDF pages")}</dd></div>
           </dl>
           <h2 className="mt-6 flex items-center gap-2 text-lg"><Package className="h-5 w-5 text-primary" />{L("Matériel nécessaire", "Materials you need")}</h2>
           <ul className="mt-2 grid gap-1.5 text-sm text-muted-foreground sm:grid-cols-2">{x.materials.map((m) => <li key={m} className="rounded-lg bg-muted/60 px-3 py-1.5">{m}</li>)}</ul>
@@ -76,4 +76,9 @@ function ProductPage() {
       </section>
     </main>
   );
+}
+
+function NotFound() {
+  const L = useL();
+  return <main className="p-16 text-center">{L("Patron introuvable.", "Pattern not found.")} <Link to="/shop" className="text-primary underline">{L("Boutique", "Shop")}</Link></main>;
 }
