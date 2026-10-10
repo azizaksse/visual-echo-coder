@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgbRouteImport } from './routes/agb'
 import { Route as DankeRouteImport } from './routes/danke'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DatenschutzRouteImport } from './routes/datenschutz'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ImpressumRouteImport } from './routes/impressum'
@@ -35,6 +36,11 @@ const AgbRoute = AgbRouteImport.update({
 const DankeRoute = DankeRouteImport.update({
   id: '/danke',
   path: '/danke',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DatenschutzRoute = DatenschutzRouteImport.update({
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agb': typeof AgbRoute
   '/danke': typeof DankeRoute
+  '/dashboard': typeof DashboardRoute
   '/datenschutz': typeof DatenschutzRoute
   '/faq': typeof FaqRoute
   '/impressum': typeof ImpressumRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agb': typeof AgbRoute
   '/danke': typeof DankeRoute
+  '/dashboard': typeof DashboardRoute
   '/datenschutz': typeof DatenschutzRoute
   '/faq': typeof FaqRoute
   '/impressum': typeof ImpressumRoute
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/agb': typeof AgbRoute
   '/danke': typeof DankeRoute
+  '/dashboard': typeof DashboardRoute
   '/datenschutz': typeof DatenschutzRoute
   '/faq': typeof FaqRoute
   '/impressum': typeof ImpressumRoute
@@ -132,6 +141,7 @@ export interface FileRouteTypes {
     | '/'
     | '/agb'
     | '/danke'
+    | '/dashboard'
     | '/datenschutz'
     | '/faq'
     | '/impressum'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/'
     | '/agb'
     | '/danke'
+    | '/dashboard'
     | '/datenschutz'
     | '/faq'
     | '/impressum'
@@ -160,6 +171,7 @@ export interface FileRouteTypes {
     | '/'
     | '/agb'
     | '/danke'
+    | '/dashboard'
     | '/datenschutz'
     | '/faq'
     | '/impressum'
@@ -175,6 +187,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgbRoute: typeof AgbRoute
   DankeRoute: typeof DankeRoute
+  DashboardRoute: typeof DashboardRoute
   DatenschutzRoute: typeof DatenschutzRoute
   FaqRoute: typeof FaqRoute
   ImpressumRoute: typeof ImpressumRoute
@@ -207,6 +220,13 @@ declare module '@tanstack/react-router' {
       path: '/danke'
       fullPath: '/danke'
       preLoaderRoute: typeof DankeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/datenschutz': {
@@ -279,6 +299,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgbRoute: AgbRoute,
   DankeRoute: DankeRoute,
+  DashboardRoute: DashboardRoute,
   DatenschutzRoute: DatenschutzRoute,
   FaqRoute: FaqRoute,
   ImpressumRoute: ImpressumRoute,
