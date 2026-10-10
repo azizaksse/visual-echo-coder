@@ -59,7 +59,7 @@ function Index() {
           { i: Sparkles, t: L("Pour débutants", "Beginner friendly"), d: L("Clair et sans stress", "Clear and stress-free") },
         ].map(({ i: I, t: title, d }) => (
           <div key={title} className="card-soft flex items-center gap-4 p-5">
-            <span className="rounded-full bg-accent p-3 text-accent-foreground"><I className="h-5 w-5" /></span>
+            <span className="rounded-full bg-accent p-3 text-accent-foreground shadow-[var(--shadow-soft)]"><I className="h-5 w-5" /></span>
             <div><p className="font-bold">{title}</p><p className="text-sm text-muted-foreground">{d}</p></div>
           </div>
         ))}
@@ -88,7 +88,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto mt-20 max-w-4xl rounded-3xl bg-sage px-6 py-12 text-center text-sage-foreground shadow-[0_2px_4px_oklch(0.3_0.03_40/0.06),0_20px_48px_-20px_oklch(0.3_0.05_30/0.3)]">
+      <section className="mx-auto mt-20 max-w-4xl rounded-[2.5rem] bg-sage px-6 py-12 text-center text-sage-foreground shadow-[0_2px_4px_oklch(0.3_0.03_40/0.06),0_24px_56px_-20px_oklch(0.3_0.05_30/0.4)]">
         <h2 className="text-3xl">{L("Un patron offert pour toi 🧶", "A free pattern for you 🧶")}</h2>
         <p className="mt-2">{L("Inscris-toi à la newsletter et reçois le patron « Mini-cœur » en cadeau.", "Sign up for the newsletter and get the “Mini Heart” pattern as a gift.")}</p>
         {sent ? <p className="mt-6 font-bold">{L("Merci ! Confirme ton inscription par e-mail.", "Thank you! Please confirm your sign-up by email.")}</p> : (
