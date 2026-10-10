@@ -31,8 +31,18 @@ function Index() {
   const bestsellers = [...products].sort((a, b) => b.popularity - a.popularity).slice(0, 4);
   return (
     <main>
-      <section className="relative">
-        <img src={hero} alt={L("Pelotes pastel et lapin au crochet", "Pastel yarn balls and crocheted bunny")} className="h-[85vh] min-h-[520px] w-full object-cover" />
+      <section className="relative h-[85vh] min-h-[520px] overflow-hidden">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/__l5e/assets-v1/aa321bcd-056d-4d0c-aa63-74e1b947bfce/hero-loop.mp4"
+          poster={hero}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-label={L("Vidéo de pelotes pastel et lapin au crochet", "Video of pastel yarn balls and a crocheted bunny")}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
         <div className="absolute inset-0 mx-auto flex max-w-6xl flex-col justify-center px-4">
           <p className="eyebrow">{L("Fait main · Téléchargement immédiat", "Handmade · Instant download")}</p>
