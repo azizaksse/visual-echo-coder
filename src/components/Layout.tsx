@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { Heart, Search, ShoppingBag } from "lucide-react";
-import { useShop, useT } from "@/lib/shop";
+import { useShop, useT, useL } from "@/lib/shop";
 
 export const SHOP_NAME = "Maschenliebe";
 
@@ -25,12 +25,12 @@ export function Header() {
           onSubmit={(e) => { e.preventDefault(); nav({ to: "/shop", search: { q } }); }}
         >
           <Search className="h-4 w-4 text-muted-foreground" />
-          <input aria-label="Suche" value={q} onChange={(e) => setQ(e.target.value)} placeholder={t.search} className="w-40 bg-transparent text-sm outline-none" />
+          <input aria-label={t.search} value={q} onChange={(e) => setQ(e.target.value)} placeholder={t.search} className="w-40 bg-transparent text-sm outline-none" />
         </form>
-        <button onClick={() => setLang(lang === "de" ? "en" : "de")} className="ml-auto rounded-full border px-2.5 py-1 text-xs font-bold sm:ml-0" aria-label="Sprache wechseln">
-          {lang === "de" ? "DE | en" : "de | EN"}
+        <button onClick={() => setLang(lang === "fr" ? "en" : "fr")} className="ml-auto rounded-full border px-2.5 py-1 text-xs font-bold sm:ml-0" aria-label="Langue / Language">
+          {lang === "fr" ? "FR | en" : "fr | EN"}
         </button>
-        <Link to="/shop" search={{ wish: true }} className="relative" aria-label="Wunschliste">
+        <Link to="/shop" search={{ wish: true }} className="relative" aria-label="Wishlist">
           <Heart className="h-5 w-5" />
           {wishlist.length > 0 && <span className="absolute -right-2 -top-2 rounded-full bg-primary px-1.5 text-[10px] font-bold text-primary-foreground">{wishlist.length}</span>}
         </Link>
@@ -59,35 +59,37 @@ export function PaymentIcons() {
 }
 
 export function Footer() {
+  const L = useL();
   return (
     <footer className="mt-24 border-t bg-secondary">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3">
         <div>
           <p className="font-display text-2xl italic">{SHOP_NAME}</p>
-          <p className="mt-2 text-sm text-muted-foreground">Häkelanleitungen als PDF – mit Liebe gemacht in Deutschland.</p>
+          <p className="mt-2 text-sm text-muted-foreground">{L("Patrons de crochet en PDF – faits avec amour en Europe.", "Crochet patterns as PDF – made with love in Europe.")}</p>
         </div>
         <div className="grid grid-cols-2 gap-2 text-sm">
-          <Link to="/impressum">Impressum</Link><Link to="/datenschutz">Datenschutz</Link>
-          <Link to="/agb">AGB</Link><Link to="/widerruf">Widerrufsbelehrung</Link>
-          <Link to="/faq">FAQ</Link><Link to="/kontakt">Kontakt</Link>
+          <Link to="/impressum">{L("Mentions légales", "Legal notice")}</Link><Link to="/datenschutz">{L("Confidentialité", "Privacy")}</Link>
+          <Link to="/agb">{L("CGV", "Terms")}</Link><Link to="/widerruf">{L("Droit de rétractation", "Right of withdrawal")}</Link>
+          <Link to="/faq">FAQ</Link><Link to="/kontakt">Contact</Link>
         </div>
-        <div><p className="mb-3 text-sm font-bold">Sicher bezahlen</p><PaymentIcons /></div>
+        <div><p className="mb-3 text-sm font-bold">{L("Paiement sécurisé", "Secure payment")}</p><PaymentIcons /></div>
       </div>
-      <p className="pb-6 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} {SHOP_NAME} · Alle Preise inkl. MwSt.</p>
+      <p className="pb-6 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} {SHOP_NAME} · {L("Tous les prix TVA incluse", "All prices incl. VAT")}</p>
     </footer>
   );
 }
 
 export function CookieBanner() {
+  const L = useL();
   const [show, setShow] = useState(false);
   useEffect(() => setShow(true), []);
   if (!show) return null;
   return (
     <div className="card-soft fixed inset-x-3 bottom-3 z-50 mx-auto max-w-2xl p-5 md:flex md:items-center md:gap-4">
-      <p className="text-sm">Wir verwenden nur technisch notwendige Cookies. Mit deiner Zustimmung nutzen wir zusätzlich Statistik-Cookies. <Link to="/datenschutz" className="underline">Mehr erfahren</Link></p>
+      <p className="text-sm">{L("Nous utilisons uniquement des cookies nécessaires. Avec ton accord, nous utilisons aussi des cookies statistiques.", "We only use necessary cookies. With your consent we also use statistics cookies.")} <Link to="/datenschutz" className="underline">{L("En savoir plus", "Learn more")}</Link></p>
       <div className="mt-3 flex shrink-0 gap-2 md:mt-0">
-        <button className="btn btn-outline px-4 py-2 text-sm" onClick={() => setShow(false)}>Nur notwendige</button>
-        <button className="btn btn-primary px-4 py-2 text-sm" onClick={() => setShow(false)}>Alle akzeptieren</button>
+        <button className="btn btn-outline px-4 py-2 text-sm" onClick={() => setShow(false)}>{L("Nécessaires uniquement", "Necessary only")}</button>
+        <button className="btn btn-primary px-4 py-2 text-sm" onClick={() => setShow(false)}>{L("Tout accepter", "Accept all")}</button>
       </div>
     </div>
   );

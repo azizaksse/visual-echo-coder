@@ -80,8 +80,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Maschenliebe – Häkelanleitungen als PDF" },
-      { name: "description", content: "Liebevolle Häkelanleitungen als PDF-E-Book zum Sofort-Download." },
+      { title: "Maschenliebe – Patrons de crochet en PDF" },
+      { name: "description", content: "Patrons de crochet en PDF, faits avec amour – téléchargement immédiat." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -100,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="de">
+    <html lang="fr">
       <head>
         <HeadContent />
       </head>
