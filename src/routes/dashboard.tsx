@@ -49,41 +49,41 @@ function Dashboard() {
     { icon: Users, l: L("Nouveaux clients", "New customers"), v: "67", d: "+9 %" },
   ];
   return (
-    <main className="mx-auto grid max-w-7xl gap-6 px-4 py-8 lg:grid-cols-[220px_1fr]">
-      <aside className="card-soft h-fit p-3">
-        <p className="eyebrow px-3 py-2">{L("Tableau de bord", "Dashboard")}</p>
-        <nav className="flex gap-1 overflow-x-auto lg:flex-col">
+    <main className="mx-auto grid max-w-7xl gap-4 px-3 py-4 sm:gap-6 sm:px-4 sm:py-8 lg:grid-cols-[220px_1fr]">
+      <aside className="card-soft sticky top-2 z-10 h-fit p-2 sm:p-3 lg:top-24">
+        <p className="eyebrow hidden px-3 py-2 lg:block">{L("Tableau de bord", "Dashboard")}</p>
+        <nav className="-mx-1 flex snap-x gap-1 overflow-x-auto px-1 [scrollbar-width:none] lg:flex-col">
           {nav.map(({ k, icon: I, l }) => (
-            <button key={k} onClick={() => setTab(k)} className={`flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold ${tab === k ? "bg-primary text-primary-foreground" : "hover:bg-muted"}`}>
+            <button key={k} onClick={() => setTab(k)} className={`flex min-h-11 shrink-0 snap-start items-center gap-2 rounded-xl px-3 py-2 text-sm lg:min-h-0 font-semibold ${tab === k ? "bg-primary text-primary-foreground" : "hover:bg-muted"}`}>
               <I className="h-4 w-4" />{l}
             </button>
           ))}
         </nav>
       </aside>
 
-      <section className="min-w-0 space-y-6">
+      <section className="min-w-0 space-y-4 sm:space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h1 className="text-3xl md:text-4xl">{L("Bonjour Anna", "Hello Anna")} 👋</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl">{L("Bonjour Anna", "Hello Anna")} 👋</h1>
           <label className="relative w-full sm:w-64">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <input className="field w-full pl-9" placeholder={L("Rechercher…", "Search…")} />
+            <input className="field min-h-11 w-full pl-9" placeholder={L("Rechercher…", "Search…")} />
           </label>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
           {stats.map(({ icon: I, l, v, d }) => (
-            <div key={l} className="card-soft p-4">
-              <div className="flex items-center justify-between text-muted-foreground"><span className="text-sm">{l}</span><I className="h-4 w-4" /></div>
-              <p className="mt-2 font-display text-2xl font-bold">{v}</p>
+            <div key={l} className="card-soft min-w-0 p-3 sm:p-4">
+              <div className="flex items-center justify-between text-muted-foreground"><span className="min-w-0 truncate text-xs sm:text-sm">{l}</span><I className="h-4 w-4 shrink-0" /></div>
+              <p className="mt-2 truncate font-display text-xl font-bold sm:text-2xl">{v}</p>
               <p className="text-xs font-semibold text-accent-foreground">{d} {L("ce mois", "this month")}</p>
             </div>
           ))}
         </div>
 
         <div className="grid gap-6 xl:grid-cols-[2fr_1fr]">
-          <div className="card-soft p-5">
+          <div className="card-soft p-4 sm:p-5">
             <h2 className="text-xl">{L("Ventes 2026", "Sales 2026")}</h2>
-            <div className="mt-6 flex h-48 items-end gap-2">
+            <div className="mt-4 flex h-40 items-end gap-1 sm:mt-6 sm:h-48 sm:gap-2">
               {sales.map((s, i) => (
                 <div key={i} className="flex flex-1 flex-col items-center gap-1">
                   <div className="w-full rounded-t-lg bg-primary/80 transition hover:bg-primary" style={{ height: `${(s / max) * 100}%` }} title={formatEUR(s * 8)} />
@@ -92,7 +92,7 @@ function Dashboard() {
               ))}
             </div>
           </div>
-          <div className="card-soft p-5">
+          <div className="card-soft p-4 sm:p-5">
             <h2 className="text-xl">{L("Meilleures ventes", "Top sellers")}</h2>
             <ul className="mt-4 space-y-3">
               {[...products].sort((a, b) => b.popularity - a.popularity).map((p) => (
@@ -106,9 +106,17 @@ function Dashboard() {
           </div>
         </div>
 
-        <div className="card-soft overflow-x-auto p-5">
+        <div className="card-soft p-4 sm:p-5">
           <h2 className="text-xl">{L("Dernières commandes", "Recent orders")}</h2>
-          <table className="mt-4 w-full min-w-[520px] text-left text-sm">
+          <ul className="mt-4 divide-y sm:hidden">
+            {orders.map((o) => (
+              <li key={o.id} className="flex items-center justify-between gap-3 py-3">
+                <div className="min-w-0"><p className="truncate font-semibold">{o.name}</p><p className="text-xs text-muted-foreground">{o.id} · {o.items} {L("articles", "items")}</p></div>
+                <div className="shrink-0 text-right"><p className="font-semibold">{formatEUR(o.total)}</p><span className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold ${statusCls[o.status]}`}>{statusLabel[o.status]}</span></div>
+              </li>
+            ))}
+          </ul>
+          <table className="mt-4 hidden w-full text-left text-sm sm:table">
             <thead className="text-muted-foreground"><tr><th className="py-2">N°</th><th>{L("Client", "Customer")}</th><th>{L("Articles", "Items")}</th><th>Total</th><th>{L("Statut", "Status")}</th></tr></thead>
             <tbody>
               {orders.map((o) => (
