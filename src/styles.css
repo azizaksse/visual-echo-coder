@@ -96,4 +96,4 @@
 }
 
 @utility eyebrow { font-size: .72rem; letter-spacing: .28em; text-transform: uppercase; font-weight: 600; color: var(--color-primary); }
-@utility card-soft-hover { transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s; &:hover { transform: translateY(-4px); } }
+@utility card-soft-hover { transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s; &:hover { transform: translateY(-4px); box-shadow: 0 2px 4px oklch(0.3 0.03 40 / 0.06), 0 16px 32px -12px oklch(0.3 0.04 30 / 0.2), 0 48px 88px -32px oklch(0.3 0.05 30 / 0.38); } }
