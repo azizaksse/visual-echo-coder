@@ -31,22 +31,22 @@ function Index() {
   const bestsellers = [...products].sort((a, b) => b.popularity - a.popularity).slice(0, 4);
   return (
     <main>
-      <section className="relative h-[85vh] min-h-[520px] overflow-hidden">
+      <section className="relative h-[72svh] min-h-[480px] max-h-[720px] overflow-hidden">
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          src="/__l5e/assets-v1/aa321bcd-056d-4d0c-aa63-74e1b947bfce/hero-loop.mp4"
           poster={hero}
           autoPlay
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="none"
+          ref={(v) => { if (v && !v.src) { const go = () => { v.src = "/__l5e/assets-v1/aa321bcd-056d-4d0c-aa63-74e1b947bfce/hero-loop.mp4"; void v.play().catch(() => {}); }; if (document.readyState === "complete") setTimeout(go, 300); else window.addEventListener("load", () => setTimeout(go, 300), { once: true }); } }}
           aria-label={L("Vidéo de pelotes pastel et lapin au crochet", "Video of pastel yarn balls and a crocheted bunny")}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-transparent" />
         <div className="absolute inset-0 mx-auto flex max-w-6xl flex-col justify-center px-4">
           <p className="eyebrow">{L("Fait main · Téléchargement immédiat", "Handmade · Instant download")}</p>
-          <h1 className="mt-5 max-w-xl text-5xl md:text-7xl">{t.heroTitle}</h1>
+          <h1 className="mt-4 max-w-xl text-4xl sm:text-5xl md:text-6xl">{t.heroTitle}</h1>
           <p className="mt-4 max-w-md text-lg text-muted-foreground">{t.heroSub}</p>
           <Link to="/shop" className="btn btn-primary mt-8 w-fit">{t.discover}</Link>
         </div>
