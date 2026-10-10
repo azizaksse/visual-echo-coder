@@ -3,7 +3,6 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Heart, Search, ShoppingBag } from "lucide-react";
 import { useShop, useT, useL } from "@/lib/shop";
 import logoMark from "@/assets/logo-mark.png";
-import logo from "@/assets/logo.png";
 
 export const SHOP_NAME = "Maschenliebe";
 
@@ -53,11 +52,13 @@ export function Header() {
 
 export const PAYMENTS = ["Visa", "Mastercard", "PayPal", "Apple Pay", "Google Pay", "SEPA", "Klarna", "iDEAL"];
 
-export function PaymentIcons() {
+export function PaymentIcons({ compact = false }: { compact?: boolean }) {
   return (
     <div className="flex flex-wrap gap-1.5">
       {PAYMENTS.map((p) => (
-        <span key={p} className="rounded-md border border-border/60 bg-card/70 px-2.5 py-1.5 text-[11px] font-semibold text-muted-foreground">{p}</span>
+        <span key={p} className={compact
+          ? "rounded border border-border/60 bg-card/70 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground"
+          : "rounded-md border border-border/60 bg-card/70 px-2.5 py-1.5 text-[11px] font-semibold text-muted-foreground"}>{p}</span>
       ))}
     </div>
   );
@@ -65,10 +66,10 @@ export function PaymentIcons() {
 
 function FooterCol({ title, links }: { title: string; links: { to: string; label: string }[] }) {
   return (
-    <nav className="grid gap-2.5">
-      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{title}</p>
+    <nav className="grid gap-1.5">
+      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{title}</p>
       {links.map((l) => (
-        <Link key={l.to} to={l.to} className="w-fit text-sm text-foreground/80 transition-colors hover:text-primary">{l.label}</Link>
+        <Link key={l.to} to={l.to} className="w-fit text-[13px] leading-snug text-foreground/80 transition-colors hover:text-primary">{l.label}</Link>
       ))}
     </nav>
   );
