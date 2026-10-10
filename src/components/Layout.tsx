@@ -3,7 +3,6 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Heart, Search, ShoppingBag } from "lucide-react";
 import { useShop, useT, useL } from "@/lib/shop";
 import logoMark from "@/assets/logo-mark.png";
-import logo from "@/assets/logo.png";
 
 export const SHOP_NAME = "Maschenliebe";
 
@@ -53,23 +52,27 @@ export function Header() {
 
 export const PAYMENTS = ["Visa", "Mastercard", "PayPal", "Apple Pay", "Google Pay", "SEPA", "Klarna", "iDEAL"];
 
-export function PaymentIcons() {
+export function PaymentIcons({ compact = false }: { compact?: boolean }) {
   return (
     <div className="flex flex-wrap gap-1.5">
       {PAYMENTS.map((p) => (
-        <span key={p} className="rounded-md border border-border/60 bg-card/70 px-2.5 py-1.5 text-[11px] font-semibold text-muted-foreground">{p}</span>
+        <span key={p} className={compact
+          ? "rounded border border-border/60 bg-card/70 px-1.5 py-0.5 text-[10px] font-semibold text-muted-foreground"
+          : "rounded-md border border-border/60 bg-card/70 px-2.5 py-1.5 text-[11px] font-semibold text-muted-foreground"}>{p}</span>
       ))}
     </div>
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: { to: string; label: string }[] }) {
+function FooterCol({ title, links, wide = false }: { title: string; links: { to: string; label: string }[]; wide?: boolean }) {
   return (
-    <nav className="grid gap-2.5">
-      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{title}</p>
-      {links.map((l) => (
-        <Link key={l.to} to={l.to} className="w-fit text-sm text-foreground/80 transition-colors hover:text-primary">{l.label}</Link>
-      ))}
+    <nav className={wide ? "col-span-2 lg:col-span-1" : ""}>
+      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{title}</p>
+      <div className={`mt-1.5 grid gap-1.5 ${wide ? "grid-cols-2 lg:grid-cols-1" : ""}`}>
+        {links.map((l) => (
+          <Link key={l.to} to={l.to} className="w-fit text-[13px] leading-snug text-foreground/80 transition-colors hover:text-primary">{l.label}</Link>
+        ))}
+      </div>
     </nav>
   );
 }
@@ -78,18 +81,17 @@ export function Footer() {
   const L = useL();
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-24 bg-secondary/50">
-      <div className="mx-auto max-w-6xl px-4 pb-6 pt-14">
-        <div className="grid gap-10 border-b pb-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
-          <div>
-            <img src={logo} alt={SHOP_NAME} className="h-24 w-24" />
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
+    <footer className="mt-12 bg-secondary/50 sm:mt-16">
+      <div className="mx-auto max-w-6xl px-4 pb-4 pt-7 sm:pb-5 sm:pt-9">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-6 border-b pb-6 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
+          <div className="col-span-2 lg:col-span-1">
+            <Link to="/" className="flex items-center gap-2" aria-label={SHOP_NAME}>
+              <img src={logoMark} alt="" className="h-8 w-8" />
+              <span className="font-display text-lg font-bold tracking-tight">{SHOP_NAME}</span>
+            </Link>
+            <p className="mt-1.5 max-w-[26ch] text-xs leading-relaxed text-muted-foreground">
               {L("Patrons de crochet en PDF – faits avec amour en Europe.", "Crochet patterns as PDF – made with love in Europe.")}
             </p>
-            <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-              {L("Paiement sécurisé", "Secure payment")}
-            </p>
-            <div className="mt-3"><PaymentIcons /></div>
           </div>
           <FooterCol title={L("Boutique", "Shop")} links={[
             { to: "/shop", label: L("Tous les modèles", "All patterns") },
@@ -100,18 +102,16 @@ export function Footer() {
             { to: "/faq", label: "FAQ" },
             { to: "/kontakt", label: L("Contact", "Contact") },
           ]} />
-          <FooterCol title={L("Légal", "Legal")} links={[
+          <FooterCol wide title={L("Légal", "Legal")} links={[
             { to: "/impressum", label: L("Mentions légales", "Legal notice") },
             { to: "/datenschutz", label: L("Confidentialité", "Privacy") },
             { to: "/agb", label: L("CGV", "Terms") },
             { to: "/widerruf", label: L("Droit de rétractation", "Right of withdrawal") },
           ]} />
         </div>
-        <div className="flex flex-col gap-2 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2.5 pt-3.5 text-[11px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} {SHOP_NAME} · {L("Tous les prix TVA incluse", "All prices incl. VAT")}</p>
-          <p className="sm:text-right">
-            {L("Conçu et tricoté avec ❤", "Designed and knitted with ❤")}
-          </p>
+          <PaymentIcons compact />
         </div>
       </div>
     </footer>
