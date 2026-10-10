@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Nunito", ui-rounded, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
   --font-sans: "Figtree", ui-sans-serif, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -34,18 +34,18 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --shadow-soft: 0 10px 30px -12px oklch(0.45 0.05 30 / 0.18);
+  --shadow-soft: 0 1px 2px oklch(0.3 0.03 40 / 0.04), 0 24px 48px -24px oklch(0.3 0.04 30 / 0.22);
 }
 
 :root {
-  --radius: 1rem;
-  --background: oklch(0.985 0.012 85);
-  --foreground: oklch(0.32 0.03 40);
+  --radius: 0.75rem;
+  --background: oklch(0.975 0.014 80);
+  --foreground: oklch(0.24 0.02 40);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.32 0.03 40);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.32 0.03 40);
-  --primary: oklch(0.68 0.08 15);
+  --primary: oklch(0.52 0.07 20);
   --primary-foreground: oklch(0.99 0.005 85);
   --secondary: oklch(0.94 0.025 75);
   --secondary-foreground: oklch(0.35 0.03 40);
@@ -69,12 +69,12 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.01em; }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.025em; line-height: 1.05; }
 }
 
 @utility btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-  border-radius: 9999px; padding: .75rem 1.5rem; font-weight: 700;
+  border-radius: 9999px; padding: .9rem 1.9rem; font-weight: 600; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase;
   transition: all .2s;
 }
 @utility btn-primary {
@@ -94,3 +94,6 @@
   border-radius: var(--radius-lg); padding: .65rem .9rem;
   &:focus { outline: 2px solid var(--color-ring); outline-offset: 1px; }
 }
+
+@utility eyebrow { font-size: .72rem; letter-spacing: .28em; text-transform: uppercase; font-weight: 600; color: var(--color-primary); }
+@utility card-soft-hover { transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s; &:hover { transform: translateY(-4px); } }
