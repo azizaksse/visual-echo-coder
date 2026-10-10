@@ -1,13 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Page } from "@/components/Layout";
+import { useL } from "@/lib/shop";
 
 export const Route = createFileRoute("/widerruf")({
-  head: () => ({ meta: [{ title: "Widerrufsbelehrung | Maschenliebe" }, { name: "description", content: "Widerrufsrecht und vorzeitiges Erlöschen bei digitalen Inhalten." }, { property: "og:title", content: "Widerrufsbelehrung | Maschenliebe" }, { property: "og:description", content: "Widerrufsrecht für digitale Inhalte." }] }),
-  component: () => (
-    <Page title="Widerrufsbelehrung">
-      <h2>Widerrufsrecht</h2><p>Du hast das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Frist beginnt mit Vertragsschluss.</p>
-      <h2>Vorzeitiges Erlöschen</h2><p>Das Widerrufsrecht erlischt bei Verträgen über digitale Inhalte, wenn wir mit der Ausführung begonnen haben, nachdem du ausdrücklich zugestimmt hast, dass wir vor Ablauf der Widerrufsfrist beginnen, und du deine Kenntnis davon bestätigt hast, dass du dein Widerrufsrecht verlierst (§ 356 Abs. 5 BGB).</p>
-      <h2>Kontakt für den Widerruf</h2><p>[Name, Anschrift, E-Mail]</p>
-    </Page>
-  ),
+  head: () => ({
+    meta: [
+      { title: "Droit de rétractation | Maschenliebe" },
+      { name: "description", content: "Droit de rétractation et sa perte anticipée pour les contenus numériques." },
+      { property: "og:title", content: "Droit de rétractation | Maschenliebe" },
+      { property: "og:description", content: "Droit de rétractation et sa perte anticipée pour les contenus numériques." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
+  component: Withdrawal,
 });
+
+function Withdrawal() {
+  const L = useL();
+  return (
+    <Page title={L("Droit de rétractation", "Right of withdrawal")}>
+      <h2>{L("Droit de rétractation", "Right of withdrawal")}</h2><p>{L("Tu as le droit de te rétracter de ce contrat dans un délai de quatorze jours sans donner de motif. Le délai commence à la conclusion du contrat.", "You have the right to withdraw from this contract within fourteen days without giving any reason. The period starts when the contract is concluded.")}</p>
+      <h2>{L("Perte anticipée", "Early expiry")}</h2><p>{L("Pour les contenus numériques, le droit de rétractation prend fin lorsque l'exécution a commencé après ton accord exprès et ta reconnaissance de la perte de ce droit.", "For digital content, the right of withdrawal expires once delivery has begun after your express consent and your acknowledgement that you lose this right.")}</p>
+      <h2>{L("Contact pour la rétractation", "Contact for withdrawal")}</h2><p>{L("[Nom, adresse, e-mail]", "[Name, address, email]")}</p>
+    </Page>
+  );
+}
