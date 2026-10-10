@@ -12,17 +12,17 @@ export function Header() {
   const nav = useNavigate();
   const [q, setQ] = useState("");
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
+    <header className="sticky top-0 z-40 px-3 pt-3 sm:px-4">
+      <div className="glass-bar mx-auto flex max-w-6xl items-center gap-4 rounded-full px-4 py-2 sm:px-5">
         <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label={SHOP_NAME}>
-          <img src={logoMark} alt="" className="h-10 w-10 md:h-11 md:w-11" />
-          <span className="font-display text-2xl font-bold tracking-tight">{SHOP_NAME}</span>
+          <img src={logoMark} alt="" className="h-9 w-9" />
+          <span className="font-display text-xl font-bold tracking-tight">{SHOP_NAME}</span>
         </Link>
-        <nav className="hidden gap-5 text-sm font-semibold md:flex">
-          <Link to="/shop" activeProps={{ className: "text-primary" }}>{t.shop}</Link>
-          <Link to="/ueber-mich" activeProps={{ className: "text-primary" }}>{t.about}</Link>
-          <Link to="/faq" activeProps={{ className: "text-primary" }}>{t.faq}</Link>
-          <Link to="/kontakt" activeProps={{ className: "text-primary" }}>{t.contact}</Link>
+        <nav className="hidden gap-1 text-sm font-medium md:flex [&>a]:rounded-full [&>a]:px-3.5 [&>a]:py-2 [&>a:hover]:bg-secondary">
+          <Link to="/shop" activeProps={{ className: "bg-foreground text-background" }}>{t.shop}</Link>
+          <Link to="/ueber-mich" activeProps={{ className: "bg-foreground text-background" }}>{t.about}</Link>
+          <Link to="/faq" activeProps={{ className: "bg-foreground text-background" }}>{t.faq}</Link>
+          <Link to="/kontakt" activeProps={{ className: "bg-foreground text-background" }}>{t.contact}</Link>
         </nav>
         <form
           className="ml-auto hidden items-center gap-2 rounded-full border bg-card px-3 py-1.5 sm:flex"
@@ -43,7 +43,7 @@ export function Header() {
           {cart.length > 0 && <span className="absolute -right-2 -top-2 rounded-full bg-primary px-1.5 text-[10px] font-bold text-primary-foreground">{cart.length}</span>}
         </Link>
       </div>
-      <nav className="flex justify-around border-t py-2 text-sm font-semibold md:hidden">
+      <nav className="glass-bar mx-auto mt-2 flex max-w-6xl justify-around rounded-full py-2 text-sm font-medium md:hidden">
         <Link to="/shop">{t.shop}</Link><Link to="/ueber-mich">{t.about}</Link><Link to="/faq">{t.faq}</Link><Link to="/kontakt">{t.contact}</Link>
       </nav>
     </header>

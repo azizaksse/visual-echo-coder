@@ -24,7 +24,7 @@ const cats: Category[] = ["amigurumi", "blankets", "clothing", "accessories", "d
 const levels: Level[] = ["beginner", "advanced"];
 
 function Chip({ on, children, onClick }: { on: boolean; children: string; onClick: () => void }) {
-  return <button onClick={onClick} className={`min-h-10 whitespace-nowrap rounded-full border px-4 py-2 text-sm font-semibold shadow-sm sm:min-h-0 sm:px-3 sm:py-1.5 ${on ? "border-primary bg-primary text-primary-foreground" : "bg-card"}`}>{children}</button>;
+  return <button onClick={onClick} className={`min-h-10 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium shadow-sm transition sm:min-h-0 sm:px-3 sm:py-1.5 ${on ? "bg-foreground text-background" : "bg-card hover:bg-secondary"}`}>{children}</button>;
 }
 
 function Shop() {
@@ -41,7 +41,7 @@ function Shop() {
     sort === "beliebt" ? b.popularity - a.popularity : sort === "preis-auf" ? a.price - b.price : sort === "preis-ab" ? b.price - a.price : b.date.localeCompare(a.date));
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 sm:py-12">
-      <h1 className="text-3xl sm:text-4xl">{wish ? L("Ma liste d'envies", "My wishlist") : q ? `${L("Recherche", "Search")} : “${q}”` : L("Tous les patrons", "All patterns")}</h1>
+      <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">{wish ? L("Ma liste d'envies", "My wishlist") : q ? `${L("Recherche", "Search")} : “${q}”` : L("Tous les patrons", "All patterns")}</h1>
       <select value={sort} onChange={(e) => setSort(e.target.value)} className="field mt-4 w-full sm:hidden" aria-label={L("Trier", "Sort")}>
         <option value="neu">{L("Nouveautés", "Newest")}</option><option value="beliebt">{L("Populaires", "Popular")}</option>
         <option value="preis-auf">{L("Prix croissant", "Price: low to high")}</option><option value="preis-ab">{L("Prix décroissant", "Price: high to low")}</option>
