@@ -10,33 +10,180 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AgbRouteImport } from './routes/agb'
+import { Route as DankeRouteImport } from './routes/danke'
+import { Route as DatenschutzRouteImport } from './routes/datenschutz'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as ImpressumRouteImport } from './routes/impressum'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as ShopRouteImport } from './routes/shop'
+import { Route as UeberMichRouteImport } from './routes/ueber-mich'
+import { Route as WarenkorbRouteImport } from './routes/warenkorb'
+import { Route as WiderrufRouteImport } from './routes/widerruf'
+import { Route as ProduktSlugRouteImport } from './routes/produkt.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgbRoute = AgbRouteImport.update({
+  id: '/agb',
+  path: '/agb',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DankeRoute = DankeRouteImport.update({
+  id: '/danke',
+  path: '/danke',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatenschutzRoute = DatenschutzRouteImport.update({
+  id: '/datenschutz',
+  path: '/datenschutz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpressumRoute = ImpressumRouteImport.update({
+  id: '/impressum',
+  path: '/impressum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UeberMichRoute = UeberMichRouteImport.update({
+  id: '/ueber-mich',
+  path: '/ueber-mich',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WarenkorbRoute = WarenkorbRouteImport.update({
+  id: '/warenkorb',
+  path: '/warenkorb',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WiderrufRoute = WiderrufRouteImport.update({
+  id: '/widerruf',
+  path: '/widerruf',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProduktSlugRoute = ProduktSlugRouteImport.update({
+  id: '/produkt/$slug',
+  path: '/produkt/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agb': typeof AgbRoute
+  '/danke': typeof DankeRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/kontakt': typeof KontaktRoute
+  '/shop': typeof ShopRoute
+  '/ueber-mich': typeof UeberMichRoute
+  '/warenkorb': typeof WarenkorbRoute
+  '/widerruf': typeof WiderrufRoute
+  '/produkt/$slug': typeof ProduktSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agb': typeof AgbRoute
+  '/danke': typeof DankeRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/kontakt': typeof KontaktRoute
+  '/shop': typeof ShopRoute
+  '/ueber-mich': typeof UeberMichRoute
+  '/warenkorb': typeof WarenkorbRoute
+  '/widerruf': typeof WiderrufRoute
+  '/produkt/$slug': typeof ProduktSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agb': typeof AgbRoute
+  '/danke': typeof DankeRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/faq': typeof FaqRoute
+  '/impressum': typeof ImpressumRoute
+  '/kontakt': typeof KontaktRoute
+  '/shop': typeof ShopRoute
+  '/ueber-mich': typeof UeberMichRoute
+  '/warenkorb': typeof WarenkorbRoute
+  '/widerruf': typeof WiderrufRoute
+  '/produkt/$slug': typeof ProduktSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/agb'
+    | '/danke'
+    | '/datenschutz'
+    | '/faq'
+    | '/impressum'
+    | '/kontakt'
+    | '/shop'
+    | '/ueber-mich'
+    | '/warenkorb'
+    | '/widerruf'
+    | '/produkt/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/agb'
+    | '/danke'
+    | '/datenschutz'
+    | '/faq'
+    | '/impressum'
+    | '/kontakt'
+    | '/shop'
+    | '/ueber-mich'
+    | '/warenkorb'
+    | '/widerruf'
+    | '/produkt/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/agb'
+    | '/danke'
+    | '/datenschutz'
+    | '/faq'
+    | '/impressum'
+    | '/kontakt'
+    | '/shop'
+    | '/ueber-mich'
+    | '/warenkorb'
+    | '/widerruf'
+    | '/produkt/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgbRoute: typeof AgbRoute
+  DankeRoute: typeof DankeRoute
+  DatenschutzRoute: typeof DatenschutzRoute
+  FaqRoute: typeof FaqRoute
+  ImpressumRoute: typeof ImpressumRoute
+  KontaktRoute: typeof KontaktRoute
+  ShopRoute: typeof ShopRoute
+  UeberMichRoute: typeof UeberMichRoute
+  WarenkorbRoute: typeof WarenkorbRoute
+  WiderrufRoute: typeof WiderrufRoute
+  ProduktSlugRoute: typeof ProduktSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +195,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agb': {
+      id: '/agb'
+      path: '/agb'
+      fullPath: '/agb'
+      preLoaderRoute: typeof AgbRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/danke': {
+      id: '/danke'
+      path: '/danke'
+      fullPath: '/danke'
+      preLoaderRoute: typeof DankeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/datenschutz': {
+      id: '/datenschutz'
+      path: '/datenschutz'
+      fullPath: '/datenschutz'
+      preLoaderRoute: typeof DatenschutzRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impressum': {
+      id: '/impressum'
+      path: '/impressum'
+      fullPath: '/impressum'
+      preLoaderRoute: typeof ImpressumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ueber-mich': {
+      id: '/ueber-mich'
+      path: '/ueber-mich'
+      fullPath: '/ueber-mich'
+      preLoaderRoute: typeof UeberMichRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/warenkorb': {
+      id: '/warenkorb'
+      path: '/warenkorb'
+      fullPath: '/warenkorb'
+      preLoaderRoute: typeof WarenkorbRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/widerruf': {
+      id: '/widerruf'
+      path: '/widerruf'
+      fullPath: '/widerruf'
+      preLoaderRoute: typeof WiderrufRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produkt/$slug': {
+      id: '/produkt/$slug'
+      path: '/produkt/$slug'
+      fullPath: '/produkt/$slug'
+      preLoaderRoute: typeof ProduktSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgbRoute: AgbRoute,
+  DankeRoute: DankeRoute,
+  DatenschutzRoute: DatenschutzRoute,
+  FaqRoute: FaqRoute,
+  ImpressumRoute: ImpressumRoute,
+  KontaktRoute: KontaktRoute,
+  ShopRoute: ShopRoute,
+  UeberMichRoute: UeberMichRoute,
+  WarenkorbRoute: WarenkorbRoute,
+  WiderrufRoute: WiderrufRoute,
+  ProduktSlugRoute: ProduktSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
