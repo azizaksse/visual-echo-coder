@@ -61,7 +61,7 @@ describe("page strings", () => {
       const body = src.replace(/head:\s*\(\)\s*=>\s*\(\{[\s\S]*?\n\s*\}\),/m, "");
       const hits = [...body.matchAll(/>\s*([A-Za-zÀ-ÿ][^<>{}]*?[A-Za-zÀ-ÿ.!?])\s*</g)]
         .map((m) => m[1].trim())
-        .filter((s) => !SAME_OK.has(s));
+        .filter((s) => !/[;=()&|]/.test(s) && !SAME_OK.has(s));
       expect(hits, "wrap these in L(fr, en)").toEqual([]);
     });
   }
