@@ -79,18 +79,17 @@ export function Footer() {
   const L = useL();
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-24 bg-secondary/50">
-      <div className="mx-auto max-w-6xl px-4 pb-6 pt-14">
-        <div className="grid gap-10 border-b pb-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+    <footer className="mt-16 bg-secondary/50">
+      <div className="mx-auto max-w-6xl px-4 pb-5 pt-9">
+        <div className="grid gap-7 border-b pb-7 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
-            <img src={logo} alt={SHOP_NAME} className="h-24 w-24" />
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
+            <Link to="/" className="flex items-center gap-2" aria-label={SHOP_NAME}>
+              <img src={logoMark} alt="" className="h-8 w-8" />
+              <span className="font-display text-lg font-bold tracking-tight">{SHOP_NAME}</span>
+            </Link>
+            <p className="mt-2 max-w-[26ch] text-xs leading-relaxed text-muted-foreground">
               {L("Patrons de crochet en PDF – faits avec amour en Europe.", "Crochet patterns as PDF – made with love in Europe.")}
             </p>
-            <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-              {L("Paiement sécurisé", "Secure payment")}
-            </p>
-            <div className="mt-3"><PaymentIcons /></div>
           </div>
           <FooterCol title={L("Boutique", "Shop")} links={[
             { to: "/shop", label: L("Tous les modèles", "All patterns") },
@@ -108,11 +107,9 @@ export function Footer() {
             { to: "/widerruf", label: L("Droit de rétractation", "Right of withdrawal") },
           ]} />
         </div>
-        <div className="flex flex-col gap-2 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 pt-4 text-[11px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} {SHOP_NAME} · {L("Tous les prix TVA incluse", "All prices incl. VAT")}</p>
-          <p className="sm:text-right">
-            {L("Conçu et tricoté avec ❤", "Designed and knitted with ❤")}
-          </p>
+          <PaymentIcons compact />
         </div>
       </div>
     </footer>
