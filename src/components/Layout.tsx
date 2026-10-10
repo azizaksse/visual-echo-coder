@@ -79,15 +79,15 @@ export function Footer() {
   const L = useL();
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-16 bg-secondary/50">
-      <div className="mx-auto max-w-6xl px-4 pb-5 pt-9">
-        <div className="grid gap-7 border-b pb-7 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
-          <div>
+    <footer className="mt-12 bg-secondary/50 sm:mt-16">
+      <div className="mx-auto max-w-6xl px-4 pb-4 pt-7 sm:pb-5 sm:pt-9">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-6 border-b pb-6 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
+          <div className="col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2" aria-label={SHOP_NAME}>
               <img src={logoMark} alt="" className="h-8 w-8" />
               <span className="font-display text-lg font-bold tracking-tight">{SHOP_NAME}</span>
             </Link>
-            <p className="mt-2 max-w-[26ch] text-xs leading-relaxed text-muted-foreground">
+            <p className="mt-1.5 max-w-[26ch] text-xs leading-relaxed text-muted-foreground">
               {L("Patrons de crochet en PDF – faits avec amour en Europe.", "Crochet patterns as PDF – made with love in Europe.")}
             </p>
           </div>
