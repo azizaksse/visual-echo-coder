@@ -70,7 +70,7 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-2 text-sm">
           <Link to="/impressum">{L("Mentions légales", "Legal notice")}</Link><Link to="/datenschutz">{L("Confidentialité", "Privacy")}</Link>
           <Link to="/agb">{L("CGV", "Terms")}</Link><Link to="/widerruf">{L("Droit de rétractation", "Right of withdrawal")}</Link>
-          <Link to="/faq">FAQ</Link><Link to="/kontakt">Contact</Link>
+          <Link to="/faq">FAQ</Link><Link to="/kontakt">Contact</Link><Link to="/dashboard">Dashboard</Link>
         </div>
         <div><p className="mb-3 text-sm font-bold">{L("Paiement sécurisé", "Secure payment")}</p><PaymentIcons /></div>
       </div>
