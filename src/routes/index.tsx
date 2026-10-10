@@ -31,7 +31,7 @@ function Index() {
   const bestsellers = [...products].sort((a, b) => b.popularity - a.popularity).slice(0, 4);
   return (
     <main>
-      <section className="relative">
+      <section className="relative h-[85vh] min-h-[520px] overflow-hidden">
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="/__l5e/assets-v1/aa321bcd-056d-4d0c-aa63-74e1b947bfce/hero-loop.mp4"
