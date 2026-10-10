@@ -77,7 +77,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto mt-20 max-w-4xl rounded-3xl bg-sage px-6 py-12 text-center text-sage-foreground">
+      <section className="mx-auto mt-20 max-w-4xl rounded-3xl bg-sage px-6 py-12 text-center text-sage-foreground shadow-[0_2px_4px_oklch(0.3_0.03_40/0.06),0_20px_48px_-20px_oklch(0.3_0.05_30/0.3)]">
         <h2 className="text-3xl">Gratis-Anleitung für dich 🧶</h2>
         <p className="mt-2">Melde dich zum Newsletter an und erhalte das Muster „Mini-Herz“ geschenkt.</p>
         {sent ? <p className="mt-6 font-bold">Danke! Bitte bestätige deine Anmeldung per E-Mail.</p> : (
