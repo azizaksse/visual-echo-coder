@@ -109,10 +109,7 @@ export function Footer() {
             { to: "/widerruf", label: L("Droit de rétractation", "Right of withdrawal") },
           ]} />
         </div>
-        <div className="flex flex-col gap-2.5 pt-3.5 text-[11px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {SHOP_NAME} · {L("Tous les prix TVA incluse", "All prices incl. VAT")}</p>
-          <PaymentIcons compact />
-        </div>
+        <p className="pt-3.5 text-center text-[11px] text-muted-foreground">© {year} {SHOP_NAME} · {L("Tous les prix TVA incluse", "All prices incl. VAT")}</p>
       </div>
     </footer>
   );
