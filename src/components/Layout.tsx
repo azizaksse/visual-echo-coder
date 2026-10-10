@@ -64,9 +64,9 @@ export function PaymentIcons({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: { to: string; label: string }[] }) {
+function FooterCol({ title, links, className = "" }: { title: string; links: { to: string; label: string }[]; className?: string }) {
   return (
-    <nav className="grid gap-1.5">
+    <nav className={`grid gap-1.5 ${className}`}>
       <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground">{title}</p>
       {links.map((l) => (
         <Link key={l.to} to={l.to} className="w-fit text-[13px] leading-snug text-foreground/80 transition-colors hover:text-primary">{l.label}</Link>
@@ -100,7 +100,7 @@ export function Footer() {
             { to: "/faq", label: "FAQ" },
             { to: "/kontakt", label: L("Contact", "Contact") },
           ]} />
-          <FooterCol title={L("Légal", "Legal")} links={[
+          <FooterCol className="col-span-2 grid-cols-2 lg:col-span-1 lg:grid-cols-1" title={L("Légal", "Legal")} links={[
             { to: "/impressum", label: L("Mentions légales", "Legal notice") },
             { to: "/datenschutz", label: L("Confidentialité", "Privacy") },
             { to: "/agb", label: L("CGV", "Terms") },
