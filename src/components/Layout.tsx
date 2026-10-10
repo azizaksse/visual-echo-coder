@@ -82,7 +82,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 pb-6 pt-14">
         <div className="grid gap-10 border-b pb-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
-            <img src={logo} alt={SHOP_NAME} className="h-20 w-20" />
+            <img src={logo} alt={SHOP_NAME} className="h-24 w-24" />
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
               {L("Patrons de crochet en PDF – faits avec amour en Europe.", "Crochet patterns as PDF – made with love in Europe.")}
             </p>
